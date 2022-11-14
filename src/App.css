@@ -1,7 +1,10 @@
-.logo{
-    color: white;
-    font-size: 20px;
-    margin: 20px;
-    text-align: center;
-    
+.layout{
+    min-height: 100vh !important;
+}
+.menu{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
 }

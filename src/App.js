@@ -1,54 +1,44 @@
 import './App.css';
-import { Layout, Menu } from 'antd';
-import React from 'react';
-const { Content, Sider } = Layout;
+import menuRoutes from './routes/menuRoute';
+import { Menu, Layout } from "antd"
+import { useNavigate } from 'react-router';
+const { Sider, Content } = Layout;
 
 
-const items = [
-  { label: 'item 1', key: 'item-1' }, // remember to pass the key prop
-  { label: 'item 2', key: 'item-2' }, // which is required
-  {
-    label: 'sub menu',
-    key: 'submenu',
-    children: [{ label: 'item 3', key: 'submenu-item-1' }],
-  },
-];
+
 const App = () => {
+  const navigate = useNavigate()
   return (
-    <Layout
-      style={{
-        minHeight: '100vh',
-      }}
-    >
-      <Sider>
-        <div className="logo">LOGO</div>
-        <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
-          <Menu.Item><a href='https://www.facebook.com/'>item 1</a></Menu.Item>
-          <Menu.Item>item 2</Menu.Item>
-          <Menu.SubMenu title="sub menu">
-            <Menu.Item>item 3</Menu.Item>
-          </Menu.SubMenu>
-        </Menu>;
-      </Sider>
-      <Layout className="site-layout">
-
-        <Content
-          style={{
-            margin: '0 16px',
-          }}
-        >
-          <div
-            className="site-layout-background"
-            style={{
-              padding: 24,
-              minHeight: 360,
-            }}
-          >
-            Bill is a cat.
-          </div>
-        </Content>
+    <>
+      <Layout className="layout">
+        <Sider>
+          <Menu className='menu' onClick={({ key }) => {
+            if (key === 'logout') {
+              console.log('sss')
+            } else { navigate(key) }
+          }} theme='dark' mode="inline" defaultSelectedKeys={['1']} items={[
+            {
+              label: "Home", key: '/',
+            }, {
+              label: "Courses",
+              children: [{ label: 'All Courses', key: '/courses' }, { label: 'Add Course', key: '/add-course' }],
+            },
+            {
+              label: "Teachers",
+              children: [{ label: 'All Teachers', key: '/teachers' }, { label: 'Add Teacher', key: '/add-teacher' }],
+            },
+            {
+              label: "Users",
+              children: [{ label: 'All Users', key: '/users' }, { label: 'Add User', key: '/add-user' }],
+            },
+            { label: "Settings", key: '/settings' },
+            { label: "Logout", key: '/logout' }
+          ]}></Menu>
+        </Sider>
+        <Content>{menuRoutes()}</Content>
       </Layout>
-    </Layout>
+
+    </>
   );
 };
 export default App;
