@@ -2,9 +2,19 @@
     min-height: 100vh !important;
 }
 .menu{
-    min-height: 100vh;
+    max-height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 10px;
+}
+.logo_wrapper{
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 30px auto;
+}
+.logo{
+    width: 100%;
+    color: aliceblue;
+    filter: invert(41%) sepia(86%) saturate(714%) hue-rotate(174deg) brightness(85%) contrast(83%);
 }

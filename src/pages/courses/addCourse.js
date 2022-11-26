@@ -1,9 +1,9 @@
 import React from 'react'
 
-const addCourse = () => {
+const AddCourse = () => {
   return (
     <div>addCourse</div>
   )
 }
 
-export default addCourse
+export default AddCourse

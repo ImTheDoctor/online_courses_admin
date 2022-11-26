@@ -1,48 +1,48 @@
-import home from '../pages/home.js';
-import addCourse from '../pages/courses/addCourse.js';
-import courses from '../pages/courses/allCourses.js';
-import logout from '../pages/logout.js';
-import settings from '../pages/settings.js';
-import addTeacher from '../pages/teachers/addTeacher';
-import allTeachers from '../pages/teachers/allTeachers';
-import addUser from '../pages/users/addUser';
-import allUsers from '../pages/users/allUsers';
+import AddCourse from '../pages/courses/AddCourse.js';
+import AllCourses from '../pages/courses/AllCourses.js';
+import Logout from '../pages/auth/Logout.js';
+import AddTeacher from '../pages/teachers/AddTeacher';
+import AllTeachers from '../pages/teachers/AllTeachers';
+import AddUser from '../pages/users/AddUser';
+import AllUsers from '../pages/users/AllUsers';
+import Login from '../pages/auth/Login.js';
+import PageNotFound from '../pages/PageNotFound.js';
 
 const routes = [
     {
-        path: "/",
-        exact: true,
-        element: home
+        path : "/",
+        element: Login
+    },
+    {
+        path: "/all-courses",
+        element: AllCourses
     },
     {
         path: "/add-course",
-        element: addCourse
-    },
-    {
-        path: "/courses",
-        element: courses
+        element: AddCourse
     },
     {
         path: "/add-user",
-        element: addUser
+        element: AddUser
     }, {
         path: "/users",
-        element: allUsers
+        element: AllUsers
     },
     {
         path: "/add-teacher",
-        element: addTeacher
+        element: AddTeacher
     },
     {
         path: "/teachers",
-        element: allTeachers
+        element: AllTeachers
     },
     {
-        path: "/settings",
-        element: settings
-    }, {
         path: "/logout",
-        element: logout
+        element: Logout
+    },
+    {
+        path: "*",
+        element: PageNotFound
     }
 ];
 
