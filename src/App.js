@@ -5,7 +5,7 @@ import Main from './components/Main';
 
 const App = () => {
 
-  const [isAdmin, setIsAdmin] = useState(false)
+  const [isAdmin, setIsAdmin] = useState(true)
   return (
     <>
       {

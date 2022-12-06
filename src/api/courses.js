@@ -1,23 +1,38 @@
-import Axios from 'axios'
+import axios from 'axios'
 
 export const getCourse = async () => {
-    await Axios.get(`${process.env.REACT_APP_SERVER_URL}/courses/`)
+    try {
+        return await axios.get('http://localhost:5000/courses', { headers: { authorization: localStorage.getItem('tkn') } });
+    } catch (error) {
+        console.log('Err', error.message)
+    }
 }
 
-export const getUserById = async (id) => {
-    await Axios.get(`${process.env.REACT_APP_SERVER_URL}/courses/${id}`)
+// export const getUserById = async (id) => {
+//     await axios.get(`${process.env.REACT_APP_SERVER_URL}/courses/${id}`)
+// }
+
+export const createCourse = async (data) => {
+    try {
+        await axios.post(`http://localhost:5000/courses/`, data, { headers: { authorization: localStorage.getItem('tkn') } })
+    // console.log(data);
+    } catch (error) {
+        console.log('Err', error.message);
+    }
 }
 
-export const createCourse = async () => {
-    await Axios.post(`${process.env.REACT_APP_SERVER_URL}/courses/`)
+export const deleteCourse = async (id) => {
+    try {
+        return await axios.delete(`http://localhost:5000/courses/${id}`, { headers: { authorization: localStorage.getItem('tkn') } })
+    } catch (error) {
+        console.log('Err', error.message);
+    }
 }
 
-export const deleteUser = async (id) => {
-    await Axios.delete(`${process.env.REACT_APP_SERVER_URL}/courses/${id}`)
+export const updateCourse = async (id, data) => {
+    try {
+        return await axios.patch(`http://localhost:5000/courses/${id}`, data, { headers: { authorization: localStorage.getItem('tkn') } })
+    } catch (error) {
+        console.log('Err', error.message);
+    }
 }
-
-export const updateUser = async (id) => {
-    await Axios.patch(`${process.env.REACT_APP_SERVER_URL}/courses/${id}`)
-}
-
-
