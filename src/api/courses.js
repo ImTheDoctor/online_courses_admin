@@ -8,14 +8,9 @@ export const getCourse = async () => {
     }
 }
 
-// export const getUserById = async (id) => {
-//     await axios.get(`${process.env.REACT_APP_SERVER_URL}/courses/${id}`)
-// }
-
 export const createCourse = async (data) => {
     try {
         await axios.post(`http://localhost:5000/courses/`, data, { headers: { authorization: localStorage.getItem('tkn') } })
-    // console.log(data);
     } catch (error) {
         console.log('Err', error.message);
     }

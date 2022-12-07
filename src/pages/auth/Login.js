@@ -1,63 +1,33 @@
 import React, { useState } from 'react'
-import { useFormik } from 'formik';
-import * as yup from 'yup'
 import { Button, Form, Input } from 'antd';
+import loginStyle from './login.module.css'
+import { useLogin } from '../../hooks/useLogin';
 
-import Axios from 'axios';
-import { useNavigate } from 'react-router';
-import login from './login.module.css'
+const Login = () => {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const { login, error, isLoading } = useLogin()
 
-const validationSchema = yup.object({
-  email: yup.string().required(),
-  password: yup.string().required()
-})
-
-const Login = ({ setIsAdmin }) => {
-  const navigate = useNavigate()
-
-  const onSubmit = async (values) => {
-    const response = await Axios
-      .post("http://localhost:5000/auth/login", values)
-      .then((response) => {
-        let token = response.data.token;
-        localStorage.setItem('tkn', 'Bearer ' + token)
-        Axios.defaults.headers.common['authorization'] = 'Bearer ' + token
-        if (response.data.isAdmin) {
-          navigate('/all-courses')
-          setIsAdmin(response.data.isAdmin)
-        }
-        
-      })
-      .catch(err => {
-        if (err && err.response) console.log("Error: ", err.response.data.message);
-      })
+  const handleSubmit = async () => {
+    const newInfo = {
+      email,
+      password,
+    }
+    await login(newInfo)
   }
 
-
-
-  const formik = useFormik({
-    initialValues: { email: '', password: '' },
-    validateOnBlur: true,
-    onSubmit,
-    validationSchema: validationSchema
-  })
-
-
-
   return (
-    <section className={login.login_section}>
-      <Form layout='vertical' className={login.form} onFinish={formik.handleSubmit}>
+    <section className={loginStyle.login_section}>
+      <Form layout='vertical' className={login.form} onFinish={handleSubmit}>
         <Form.Item label="Email">
           <Input
             type="email"
             name="email"
             placeholder='Enter your login'
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.email}
+            onChange={(e) => setEmail(e.target.value)}
+            value={email}
             required
           />
-          {formik.errors.email && formik.touched.email ? <div className={login.alert}>{formik.errors.email}</div> : ""}
         </Form.Item>
 
         <Form.Item label="Password">
@@ -65,18 +35,18 @@ const Login = ({ setIsAdmin }) => {
             type="password"
             name="password"
             placeholder='Enter your password'
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.password}
+            onChange={(e) => setPassword(e.target.value)}
+            value={password}
             required
           />
-          {formik.errors.password && formik.touched.password ? <div className={login.alert}>{formik.errors.password}</div> : ""}
         </Form.Item>
 
         <Form.Item>
-          <Button htmlType="submit" type='primary' block>
+          <Button htmlType="submit" type='primary' disabled={isLoading} block>
             Login
           </Button>
+          {error && <div className={loginStyle.error}>{error.message}</div>}
+          
         </Form.Item>
 
       </Form>

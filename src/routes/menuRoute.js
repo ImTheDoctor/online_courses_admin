@@ -2,7 +2,7 @@ import React from 'react'
 import { Routes, Route } from "react-router-dom";
 import routes from './routes';
 
-const menuRoutes = () => {
+const MenuRoutes = () => {
     return (
         <Routes>
             {
@@ -14,4 +14,4 @@ const menuRoutes = () => {
     )
 }
 
-export default menuRoutes
+export default MenuRoutes

@@ -1,11 +1,13 @@
 import React from 'react'
-import menuRoutes from '../routes/menuRoute';
+import MenuRoutes from '../routes/menuRoute';
+import { useLogout } from '../hooks/useLogout';
 import logo from '../assets/cpanel.svg'
 import { Menu, Layout } from "antd"
 import { useNavigate } from 'react-router';
 const { Sider, Content } = Layout;
 
-const Main = ({ setIsAdmin }) => {
+const Main = () => {
+    const { logout } = useLogout()
     const navigate = useNavigate()
     return (
         <Layout className="layout">
@@ -15,13 +17,13 @@ const Main = ({ setIsAdmin }) => {
                 </div>
                 <Menu className='menu' onClick={({ key }) => {
                     if (key === 'logout') {
-                        navigate('/login')
-                        setIsAdmin(false)
+                        logout()
+                        //navigate('/login')
                     } else { navigate(key) }
                 }} theme='dark' mode="inline" items={[
                     {
                         label: "Courses",
-                        children: [{ label: 'All Courses', key: '/all-courses' }, { label: 'Add Course', key: '/add-course' }],
+                        children: [{ label: 'All Courses', key: '/course' }, { label: 'Add Course', key: '/add-course' }],
                     },
                     {
                         label: "Teachers",
@@ -34,7 +36,9 @@ const Main = ({ setIsAdmin }) => {
                     { label: "Logout", key: 'logout' }
                 ]}></Menu>
             </Sider>
-            <Content>{menuRoutes()}</Content>
+            <Content>
+                <MenuRoutes />
+            </Content>
         </Layout>
     )
 }

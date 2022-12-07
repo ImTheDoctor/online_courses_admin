@@ -8,10 +8,6 @@ export const getTeachers = async () => {
     }
 }
 
-// export const getTeacherById = async(id) =>{
-//     await axios.get(`${process.env.REACT_APP_SERVER_URL}/teachers/${id}`)
-// }
-
 export const createTeacher = async (data) => {
     try {
         await axios.post(`http://localhost:5000/teachers`, data, { headers: { authorization: localStorage.getItem('tkn') } })
@@ -31,7 +27,6 @@ export const deleteTeacher = async (id) => {
 export const updateTeacher = async (id, data) => {
     try {
         return await axios.patch(`http://localhost:5000/teachers/${id}`, data, { headers: { authorization: localStorage.getItem('tkn') } })
-        //console.log(id, data);
     } catch (error) {
         console.log('Err', error.message);
     }

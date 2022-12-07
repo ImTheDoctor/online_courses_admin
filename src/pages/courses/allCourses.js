@@ -20,7 +20,7 @@ const Courses = () => {
     }
     fetchDataCourse()
   }, [])
-console.log(editingCourse);
+
   const deleteItem = (record) => {
     Modal.confirm({
       title: 'Are you sure, you want to delete this course?',
@@ -58,9 +58,9 @@ console.log(editingCourse);
           ellipsis={true}
           key="whatYouWillLearn"
           render={(tags) => (
-            <div style={{ display: 'flex', flexDirection: 'column', maxWidth: '100%', gap:'5px', flexWrap: 'wrap' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', maxWidth: '100%', gap: '5px', flexWrap: 'wrap' }}>
               {tags.map((tag) => (
-                <Tag style={{ textAlign: 'center', maxWidth: '150px', overflow:'hidden', paddingRight:'5px'}} color="blue" key={tag}>
+                <Tag style={{ textAlign: 'center', maxWidth: '150px', overflow: 'hidden', paddingRight: '5px' }} color="blue" key={tag}>
                   {tag}
                 </Tag>
               ))}

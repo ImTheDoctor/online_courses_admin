@@ -14,7 +14,7 @@ const routes = [
         element: Login
     },
     {
-        path: "/all-courses",
+        path: "/course",
         element: AllCourses
     },
     {

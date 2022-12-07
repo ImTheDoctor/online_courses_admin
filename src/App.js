@@ -1,17 +1,17 @@
 import './App.css';
-import { useState } from 'react';
 import Login from './pages/auth/Login';
 import Main from './components/Main';
+import { useAuthContext } from './hooks/useAuthContext'
 
 const App = () => {
-
-  const [isAdmin, setIsAdmin] = useState(true)
+  
+  const { user } = useAuthContext()
   return (
     <>
       {
-        !isAdmin ?
-          <Login setIsAdmin={setIsAdmin} /> :
-          <Main setIsAdmin={setIsAdmin} />
+        !user ?
+          <Login /> :
+          <Main />
       }
     </>
   );
