@@ -1,4 +1,4 @@
-# Createx - Online Courses (Client Part)
+# Createx - Online Courses (Admin Part)
 
 Welcome to Createx. This is a fully functional website where you can buy online courses. The backend is written using Node JS/Express, the admin panel built with React and the UI framework is ANT Design. The client side is written in NEXT JS.
 
